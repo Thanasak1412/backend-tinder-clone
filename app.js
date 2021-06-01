@@ -4,7 +4,7 @@ const cors = require("cors");
 const TinderCard = require("./models/TinderCards");
 
 const app = express();
-const port = 3001 || process.env.PORT;
+const port = process.env.PORT;
 const connectUrl =
   "mongodb+srv://new-user:password1234@cluster0.nmv2c.mongodb.net/tinder-clone?retryWrites=true&w=majority";
 
@@ -32,6 +32,10 @@ app.post("/tinder/cards", (req, res) => {
     !err ? res.status(201).send(data) : res.status(500).send(err);
   });
 });
+
+if (port == null || port == "") {
+  port = 3001;
+}
 
 app.listen(port, () => {
   console.log(`Server is starting on port ${port}`);
