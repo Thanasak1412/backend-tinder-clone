@@ -1,14 +1,13 @@
-require("dotenv").config();
 const express = require("express"),
   mongoose = require("mongoose"),
   cors = require("cors"),
+  connectUrl =
+    "mongodb+srv://new-user:XTniLExgsBmY6yED@cluster0.nmv2c.mongodb.net/tinder-clone?retryWrites=true&w=majority",
   TinderCard = require("./models/TinderCards"),
-  { CONNECT_URL } = process.env;
+  app = express(),
+  port = process.env.PORT || 3001;
 
-const app = express();
-const port = process.env.PORT || 3001;
-
-mongoose.connect(CONNECT_URL, {
+mongoose.connect(connectUrl, {
   useFindAndModify: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,

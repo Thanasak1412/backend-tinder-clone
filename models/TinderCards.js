@@ -5,6 +5,6 @@ const tinderSchema = mongoose.Schema({
     imageUrl: ""
 })
 
-const TinderCard = mongoose.model("Tinder", tinderSchema);
+const TinderCard = mongoose.model("TinderCard", tinderSchema);
 
 module.exports = TinderCard;
