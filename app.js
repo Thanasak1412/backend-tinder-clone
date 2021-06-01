@@ -1,14 +1,14 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const TinderCard = require("./models/TinderCards");
+require("dotenv").config();
+const express = require("express"),
+  mongoose = require("mongoose"),
+  cors = require("cors"),
+  TinderCard = require("./models/TinderCards"),
+  { CONNECT_URL } = process.env;
 
 const app = express();
-const port = process.env.PORT;
-const connectUrl =
-  "mongodb+srv://new-user:password1234@cluster0.nmv2c.mongodb.net/tinder-clone?retryWrites=true&w=majority";
+const port = process.env.PORT || 3001;
 
-mongoose.connect(connectUrl, {
+mongoose.connect(CONNECT_URL, {
   useFindAndModify: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -32,10 +32,6 @@ app.post("/tinder/cards", (req, res) => {
     !err ? res.status(201).send(data) : res.status(500).send(err);
   });
 });
-
-if (port == null || port == "") {
-  port = 3001;
-}
 
 app.listen(port, () => {
   console.log(`Server is starting on port ${port}`);
